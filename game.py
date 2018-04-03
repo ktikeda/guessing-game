@@ -9,18 +9,20 @@ def guessing_game():
     print('Try to guess my number.')
 
     guess = raw_input('Your guess?:')
-    
-    c = 1
+    val_guess(guess)
+    tries = 1
 
     while int(guess) != random_num:
         if int(guess) > random_num:
             guess = raw_input("Your guess is too high, try again.\nYour guess?:")
-            c += 1
+            val_guess(guess)
+            tries += 1
         elif int(guess) < random_num:
             guess = raw_input("Your guess is too low, try again.\nYour guess?:")
-            c += 1
+            val_guess(guess)
+            tries += 1
 
-    print "Well done, {}! You found my number in {} tries!".format(user_name, c)
+    print "Well done, {}! You found my number in {} tries!".format(user_name, tries)
 
 def val_guess(user_input):
     while True:
@@ -28,13 +30,12 @@ def val_guess(user_input):
             int(user_input)
         except:
             user_input = raw_input("Sorry, that is not a valid guess. Please choose a number between 1 and 100.:")
-
+            continue
         if int(user_input) < 1 or int(user_input) > 100:
             user_input = raw_input("Sorry, that is not a valid guess. Please choose a number between 1 and 100.:")
     guess = user_input
     return guess
 
 
-#guessing_game()
-val_guess('yes')
-val_guess('101')
+guessing_game()
+
