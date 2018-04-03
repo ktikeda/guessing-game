@@ -8,35 +8,43 @@ def guessing_game():
     print("{}, I'm thinking of a number between 1 and 100.".format(user_name))
     print('Try to guess my number.')
 
+    total_tries = 0
     guess = raw_input('Your guess?:')
-    guess = val_guess(guess)
-    tries = 1
+    validation_results = val_guess(guess, total_tries)
+
+    guess = validation_results[0]
+    total_tries = validation_results[1]
 
     while guess != random_num:
         if guess > random_num:
             guess = raw_input("Your guess is too high, try again.\nYour guess?:")
-            guess = val_guess(guess)
-            tries += 1
+            validation_results = val_guess(guess, total_tries)
+            guess = validation_results[0]
+            total_tries = validation_results[1]
         elif guess < random_num:
             guess = raw_input("Your guess is too low, try again.\nYour guess?:")
-            guess = val_guess(guess)
-            tries += 1
+            validation_results = val_guess(guess, total_tries)
+            guess = validation_results[0]
+            total_tries = validation_results[1]            
 
     print "Well done, {}! You found my number in {} tries!".format(user_name, tries)
 
-def val_guess(user_input):
+def val_guess(user_input, c_tries):
     while True:
         try:
-            int(user_input)
-        except:
-            user_input = raw_input("Sorry, that is not a valid guess. Please choose a number between 1 and 100.:")
+            user_input = int(user_input)
+        except ValueError:
+            user_input = raw_input("Sorry, your guess is not a valid number. Please choose a number between 1 and 100.:")
+            c_tries += 1
             continue
-        if int(user_input) < 1 or int(user_input) > 100:
-            user_input = raw_input("Sorry, that is not a valid guess. Please choose a number between 1 and 100.:")
+        if user_input < 1 or user_input > 100:
+            user_input = raw_input("Sorry, your guess is out of range. Please choose a number between 1 and 100.:")
+            c_tries += 1
             continue
         else:
             break
-    return int(user_input)
+    c_tries += 1
+    return (user_input, c_tries)
 
 
 guessing_game()
