@@ -9,10 +9,6 @@ def guessing_game():
     print('Try to guess my number.')
 
     guess = raw_input('Your guess?:')
-    while not guess.isdigit():
-        guess = raw_input("Sorry, that is not a valid guess. Please choose a number between 1 and 100.:")
-    while int(guess) < 1 or int(guess) > 100:
-        guess = raw_input("Sorry, that is not a valid guess. Please choose a number between 1 and 100.:")
     
     c = 1
 
@@ -26,5 +22,19 @@ def guessing_game():
 
     print "Well done, {}! You found my number in {} tries!".format(user_name, c)
 
+def val_guess(user_input):
+    while True:
+        try:
+            int(user_input)
+        except:
+            user_input = raw_input("Sorry, that is not a valid guess. Please choose a number between 1 and 100.:")
 
-guessing_game()
+        if int(user_input) < 1 or int(user_input) > 100:
+            user_input = raw_input("Sorry, that is not a valid guess. Please choose a number between 1 and 100.:")
+    guess = user_input
+    return guess
+
+
+#guessing_game()
+val_guess('yes')
+val_guess('101')
