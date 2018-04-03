@@ -18,14 +18,11 @@ def guessing_game():
     while guess != random_num:
         if guess > random_num:
             guess = raw_input("Your guess is too high, try again.\nYour guess?:")
-            validation_results = val_guess(guess, total_tries)
-            guess = validation_results[0]
-            total_tries = validation_results[1]
         elif guess < random_num:
             guess = raw_input("Your guess is too low, try again.\nYour guess?:")
-            validation_results = val_guess(guess, total_tries)
-            guess = validation_results[0]
-            total_tries = validation_results[1]            
+        validation_results = val_guess(guess, total_tries)
+        guess = validation_results[0]
+        total_tries = validation_results[1]
 
     print "Well done, {}! You found my number in {} tries!".format(user_name, total_tries)
 
