@@ -27,7 +27,7 @@ def guessing_game():
             guess = validation_results[0]
             total_tries = validation_results[1]            
 
-    print "Well done, {}! You found my number in {} tries!".format(user_name, tries)
+    print "Well done, {}! You found my number in {} tries!".format(user_name, total_tries)
 
 def val_guess(user_input, c_tries):
     while True:
