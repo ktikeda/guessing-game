@@ -34,6 +34,8 @@ def guessing_game():
 
         print "Well done, {}! You found my number in {} tries!\n".format(user_name, total_tries)
 
+        all_scores.append(total_tries)
+
         if len(all_scores) > 1:
             if total_tries < best_score:
                 print "Congratulations! {} tries is your best score!\n".format(total_tries)
@@ -41,8 +43,8 @@ def guessing_game():
                 print "You've matched your best score of {} tries!\n".format(total_tries)
             else:
                 print "Your best score so far is {} tries!\n".format(best_score)
-        
-        all_scores.append(total_tries)
+    
+
         best_score = min(all_scores)
 
         play_again = raw_input("Would you like to play again? Enter 'Y' for 'yes' or 'N' for 'no.':")
