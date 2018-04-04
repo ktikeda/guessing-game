@@ -5,6 +5,7 @@ def guessing_game():
     import random
     
     playing = True
+    all_scores = []
 
     while playing:
 
@@ -29,7 +30,12 @@ def guessing_game():
             guess = validation_results[0]
             total_tries = validation_results[1]
 
-        print "Well done, {}! You found my number in {} tries!".format(user_name, total_tries)
+        print "Well done, {}! You found my number in {} tries!\n".format(user_name, total_tries)
+        all_scores.append(total_tries)
+        best_score = min(all_scores)
+
+        if len(all_scores) > 1:
+            print "Your best score so far is {} tries!\n".format(best_score)
 
         play_again = raw_input("Would you like to play again? Enter 'Y' for 'yes' or 'N' for 'no.':")
         while play_again.lower() != 'n' and play_again.lower() != 'y':
