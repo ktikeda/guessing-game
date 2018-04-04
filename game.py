@@ -1,9 +1,11 @@
 """A number-guessing game."""
 
+import random
+
 def guessing_game():
+
     user_name = raw_input("Hi! What's your name?:")
-    import random
-    
+
     playing = True
     all_scores = []
 
@@ -31,18 +33,25 @@ def guessing_game():
             total_tries = validation_results[1]
 
         print "Well done, {}! You found my number in {} tries!\n".format(user_name, total_tries)
+
+        if len(all_scores) > 1:
+            if total_tries < best_score:
+                print "Congratulations! {} tries is your best score!\n".format(total_tries)
+            elif total_tries == best_score:
+                print "You've matched your best score of {} tries!\n".format(total_tries)
+            else:
+                print "Your best score so far is {} tries!\n".format(best_score)
+        
         all_scores.append(total_tries)
         best_score = min(all_scores)
 
-        if len(all_scores) > 1:
-            print "Your best score so far is {} tries!\n".format(best_score)
-
         play_again = raw_input("Would you like to play again? Enter 'Y' for 'yes' or 'N' for 'no.':")
-        while play_again.lower() != 'n' and play_again.lower() != 'y':
+        play_again = play_again.lower()
+        while play_again != 'n' and play_again != 'y':
             play_again = raw_input("Sorry, I didn't get that. Would you like to play again? Enter 'Y' for 'yes' or 'N' for 'no.':")
-        if play_again.lower() == 'y':
+        if play_again == 'y':
             continue
-        elif play_again.lower() == 'n':
+        elif play_again == 'n':
             playing = False
 
 def val_guess(user_input, c_tries):
